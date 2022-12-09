@@ -1,0 +1,72 @@
+import mysql.connector
+
+mydb=mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="......",
+    database="pythonconnect"
+    )
+mycursor=mydb.cursor()
+
+#mycursor.execute("create database pythonconnect")
+#mycursor.execute("use pythonconnect")
+#mycursor.execute("create table details(name varchar(30),age int(2))")
+#mycursor.execute("insert into details values('Surya',19)")
+#mydb.commit()
+#mycursor.execute("create table address(addID int PRIMARY KEY,address varchar(100))")
+#mycursor.execute("update details set nameID=3 where age=51")
+mycursor.execute("alter table details add PRIMARY KEY(nameID)")
+mydb.commit()
+"""
+print("Options: \n1.Add \n2.Update \n3.Delete \n4.Show 5.Exit")
+
+while True:
+    ch=int(input("Enter choice: "))
+    if ch==1:
+        name=input("Enter name: ")
+        age=int(input("Enter age: "))
+        mycursor.execute("insert into details values(%s,%s)",(name,age));
+        mydb.commit()
+        print("Detail is added.\n")
+    if ch==3:
+        ch1=int(input("Enter option to delete with(1)name 2)age): "))
+        if ch1==1:
+            dele=input("Enter name to delete with: ")
+            tup=(dele,)
+            mycursor.execute("delete from details where name=%s",tup)
+            mydb.commit()
+        if ch1==2:
+            dele=int(input("Enter name to delete with: "))
+            tup=(dele,)
+            mycursor.execute("delete from details where age=%s",tup)
+            mydb.commit()
+        
+
+    if ch==2:
+        ch1=int(input("Enter option to update with(1)name 2)age): "))
+        if ch1==1:
+            up=input("Enter name to update with: ")
+            up2=input("Enter name to update into: ")
+            sql="update details set name=%s where name=%s"
+            val=(up2,up)
+            mycursor.execute(sql,val)
+            mydb.commit()
+            print("Done updating")
+        if ch1==2:
+            up=int(input("Enter name to update with: "))
+            up2=int(input("Enter name to update into: "))
+            sql="update details set age=%s where age=%s"
+            val=(up2,up)
+            mycursor.execute(sql,val)
+            mydb.commit()
+            print("Done updating")
+    if ch==4:
+        mycursor.execute("select* from details")
+        x=mycursor.fetchall()
+        print("Name\tAge\t")
+        for i in x:
+            print(i[0],"\t",i[1])
+    if ch==5:
+        break
+    
+"""   
